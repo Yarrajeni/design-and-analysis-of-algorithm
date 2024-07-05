@@ -1,0 +1,44 @@
+#include <stdio.h>
+int min(int a, int b) {
+    return (a < b) ? a : b;
+}
+int binomialCoeff(int n, int k) {
+    int C[n + 1][k + 1];
+    int i, j;
+    for (i = 0; i <= n; i++) {
+        for (j = 0; j <= min(i, k); j++) {
+            if (j == 0 || j == i)
+                C[i][j] = 1;
+            else
+                C[i][j] = C[i - 1][j - 1] + C[i - 1][j];
+        }
+    }
+    return C[n][k];
+}
+int main() {
+    int n = 5, k = 2;
+    printf("The binomial coefficient C(%d, %d) is %d\n", n, k, binomialCoeff(n, k));
+    return 0;
+}
+Output:
+The binomial coefficient C(5, 2) is 10
+
+23. Write a program   to find the reverse of a given number
+#include <stdio.h>
+int main() {
+    int num, reversedNum = 0, remainder;
+    printf("Enter an integer: ");
+    scanf("%d", &num);
+
+    while (num != 0) {
+        remainder = num % 10;
+        reversedNum = reversedNum * 10 + remainder;
+        num /= 10;
+    }
+    printf("Reversed number = %d", reversedNum);
+    return 0;
+}
+Output:
+Enter an integer: 45613
+Reversed number = 31654
+
