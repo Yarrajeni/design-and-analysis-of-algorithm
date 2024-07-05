@@ -1,0 +1,60 @@
+#include <stdio.h>
+int main() {
+    int graph[4][4] = {
+        {0, 1, 1, 1},
+        {1, 0, 1, 0},
+        {1, 1, 0, 1},
+        {1, 0, 1, 0}
+    };
+    int colors[4] = {0};
+    int m = 3; // Number of colors
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < i; j++) {
+            if (graph[i][j] && colors[j] == colors[i]) {
+                colors[i] = (colors[i] + 1) % m;
+                j = -1;
+            }
+        }
+    }
+    printf("Colors assigned to vertices: \n");
+    for (int i = 0; i < 4; i++) {
+        printf("Vertex %d: Color %d\n", i, colors[i]);
+    }
+    return 0;
+}
+Output:
+Colors assigned to vertices: 
+Vertex 0: Color 0
+Vertex 1: Color 1
+Vertex 2: Color 2
+Vertex 3: Color 1
+
+36. Write a program to compute container loader Problem.
+#include <stdio.h>
+int main() {
+    int container_capacity = 1000;
+    int box1 = 300;
+    int box2 = 200;
+    int box3 = 400;
+    int total_boxes_loaded = 0;
+    int total_weight_loaded = 0;
+    while (total_weight_loaded + box1 <= container_capacity) {
+        total_weight_loaded += box1;
+        total_boxes_loaded++;
+    }
+    while (total_weight_loaded + box2 <= container_capacity) {
+        total_weight_loaded += box2;
+        total_boxes_loaded++;
+    }
+    while (total_weight_loaded + box3 <= container_capacity) {
+        total_weight_loaded += box3;
+        total_boxes_loaded++;
+    }
+    printf("Total boxes loaded: %d\n", total_boxes_loaded);
+    printf("Total weight loaded: %d\n", total_weight_loaded);
+    return 0;
+}
+Output:
+Total boxes loaded: 3
+Total weight loaded: 900
+
